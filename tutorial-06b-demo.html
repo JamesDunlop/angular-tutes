@@ -1,0 +1,77 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <style>
+    #main-content {
+      background: #EAEAEA;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      width: 530px;
+      height: 200px;
+      float: left;
+    }
+    aside {
+      background: #EAEAEA;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      width: 230px;
+      height: 200px;
+      float: left;
+    }
+    .date-time, .current-date-time {
+      font-size: 18px;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  </style>
+  <base href="/" />
+</head>
+<body ng-controller="demoCtrl">
+  <div id="main-content">
+    <h1>{{ heading }}<datetime datetime-value="datetimetext" format-string="'EEE MMM yyyy, hh:mm:ss'" /></h1>
+    <p>Cloudy. Scattered showers. Winds north to northwesterly 15 to 25 km/h ahead of a south to southeasterly change 25 to 40 km/h developing in the morning, reaching up to 55 km/h near the coast in the afternoon.</p>
+    <input type="text" ng-model="datetimetext" />
+  </div>
+  <aside>
+    <datetime datetime-value="datetimetext" format-string="'dd/MM/yyyy hh:mm'" />
+  </aside>
+
+  <script>
+    var demoModule = angular.module('demo', ['ngRoute']);
+          
+    demoModule.controller('demoCtrl', function($scope) {
+      $scope.heading = 'Sydney Forecast'; 
+      $scope.datetimetext = '1288323623006';
+    });
+
+    demoModule.directive('datetime', function(dateFilter) {
+      return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+          outputFormat: '=formatString',
+          currentValue: '=datetimeValue'
+        },
+        templateUrl: 'tutorial-06b-demo-datetime.html',
+        link: function(scope, element, attrs) {
+
+          var getdatetimeval = function(currValue, outFormat) {
+            return dateFilter(currValue, outFormat);
+          };
+
+          scope.$watch('currentValue', function(newValue, oldValue) {
+            scope.datetimeval = getdatetimeval(newValue, scope.outputFormat);
+          });
+        }
+      };
+    });
+
+  </script>
+
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

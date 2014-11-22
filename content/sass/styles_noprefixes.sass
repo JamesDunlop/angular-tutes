@@ -1,0 +1,93 @@
+// styles.sass
+@import "compass"
+// Compass reset
+@import "compass/reset"
+// // CSS3 font importing helpers from compass
+@import "compass/css3/font-face"
+// // Compass Clearfix
+@import "compass/utilities/general/clearfix"
+
+@import "compass/typography/vertical_rhythm"
+
+// Turn off prefixing since we are using 'Autoprefixer' to post-process CSS
+$experimental-support-for-mozilla: false !default
+$experimental-support-for-webkit: false !default
+$support-for-original-webkit-gradients: false !default
+$experimental-support-for-opera: false !default
+$experimental-support-for-microsoft: false !default
+$experimental-support-for-khtml: false !default
+
+$inset: 200px
+$inset-short: 90px
+
+body
+  font-family: arial
+  font-color: #AAA
+
+#content
+  width: 750px
+  margin: auto
+
+  #slide-content
+    background: #EAEAEA
+    padding: 20px
+    position: relative
+
+    .angjs-large
+      opacity: 0.2
+      width: 383px
+      display: block
+      margin: auto
+
+    h1
+      color: #777
+      font-size: 28px
+      margin: 30px 0 30px $inset - 30px
+      &.long-content
+        margin: 30px 0 30px $inset-short - 30px
+
+    .main-points
+      font-size: 18px
+      margin: 10px 0 10px $inset
+      &.long-content
+        margin: 10px 0 10px $inset-short
+
+      ul
+        list-style-type: disc
+
+      li
+        margin-bottom: 15px
+        color: #888
+        span
+          line-height: 24px
+
+      li.current
+        color: #000
+
+  .slide-controls
+    position: absolute
+    font-size: 24px
+    color: #BBB
+    cursor: pointer
+    top: 10px
+    right: 20px
+    width: 40px
+
+  #code-content
+    background: #EAEAEA
+    padding: 20px
+
+    .code
+      background: #FFF
+      border: 3px solid #999
+      box-sizing: border-box
+      width: 100%
+      min-height: 300px
+
+      pre
+        margin: 20px
+        font-family: 'droid sans mono'
+
+      pre.html-code
+        font-size: 16px
+        font-family: 'courier'

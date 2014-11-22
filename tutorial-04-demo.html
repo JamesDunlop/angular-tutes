@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <base href="/" />
+  
+</head>
+<body ng-controller="demoCtrl">
+  <div style="margin-left: 10px; padding: 10px; border: 1px solid black;">
+    <h1>I'm a top level controller</h1>
+    <input type="text" ng-model="myData.message" />
+    <p>In Top Level Controller 'myData.message' is {{ myData.message }}</p>
+
+    <div ng-controller="nestedCtrl" style="margin: 20px 0 20px 40px; padding: 10px; border: 1px solid brown;">
+      <h1>I'm a nested controller</h1>
+      <input type="text" ng-model="myData.message" />
+      <p>In Nested Controller 'myData.message' is {{ myData.message }}</p>
+    </div>
+
+  </div>
+  <script>
+    var demoModule = angular.module('demo', ['ngRoute']);
+          
+    demoModule.controller('demoCtrl', function($scope) {
+
+      $scope.myData = { message: 'Some message' };
+
+    });
+
+    demoModule.controller('nestedCtrl', function($scope) {
+
+    });
+
+  </script>  
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

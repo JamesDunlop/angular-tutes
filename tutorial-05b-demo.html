@@ -1,0 +1,64 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <style>
+    .tute-item {
+      margin: 5px 10px 5px 10px; padding: 10px; border: 1px solid black;
+    }
+    .tute-item h2 {
+      margin: 0;
+    }
+    .tute-result {
+      width: 500px; border: 1px solid green; padding: 10px;
+    }
+  </style>
+  <base href="/" />
+</head>
+<body ng-controller="demoCtrl">
+  <div class="tute-item">
+    <h2>ngBind (ng-bind)</h2>
+    <p class="tute-result" ng-bind="event01"></p>
+  </div>
+  <div class="tute-item">
+    <h2>ngBindTemplate (ng-bind-template)</h2>
+    <p class="tute-result" ng-bind-template="{{event02.eventTitle}} ( {{event02.date}} )"></p>
+  </div>
+  <div class="tute-item">
+    <h2>ngBindHtml (ng-bind-html)</h2>
+    <p class="tute-result" ng-bind-html="event03"></p>
+  </div>
+  <div class="tute-item">
+    <h2>ngSwitch (ng-switch)</h2>
+    <p class="tute-result" ng-switch="timeOfDay">
+      <span ng-switch-when="6">Good morning</span>
+      <span ng-switch-when="12">Gidday</span>
+      <span ng-switch-when="18">Good evening</span>
+      <span ng-switch-default>Unknown</span>
+    </p>
+    <input type="button" value="+ 6 hours" ng-click="incrementTime()" />
+  </div>
+  <script>
+    var demoModule = angular.module('demo', ['ngRoute', 'ngSanitize']);
+          
+    demoModule.controller('demoCtrl', function($scope) {
+
+      $scope.event01 = 'Christmas at the Rocks';
+
+      $scope.event02 = { eventTitle: 'Sydney at New Year', date: '31 Dec 2013' };
+
+      $scope.event03 = '<span style="color: green; font-size: 18px;">Coming soon to a Hoyts <a href="http://www.hoyts.com.au/movies/2013/enders_game.aspx">Enders Game</a></span>';
+
+      $scope.timeOfDay = 0;
+
+      $scope.incrementTime = function() {
+        $scope.timeOfDay = ($scope.timeOfDay + 6) % 24;
+      };
+
+    });
+
+  </script>  
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html ng-app="todo">
+<head>
+  <script src="bower_components/jquery/dist/jquery.js" ></script>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>
+  <script src="bower_components/lodash/dist/lodash.js" ></script>
+
+  <style>
+    .todo-container {
+      margin: 5px;
+    }
+    .todo-active-container, .todo-archive-container {
+      margin: 10px;
+      border: 1px solid #BBB;
+      border-radius: 5px;
+      padding: 10px 20px;
+      width: 240px;
+    }
+    .todo-list-heading, .todo-detail-heading {
+      color: #3030A0;
+      padding: 0 0 10px 0;
+      margin: 0;
+      border-bottom: 1px solid #999;
+    }
+    .todo-archive-action {
+      padding-left: 14px;
+      padding-top: 3px;
+      font-size: 14px;
+      font-weight: normal;
+      text-decoration: none;
+      cursor: pointer;
+      color: #3030A0;
+      float: right;
+    }
+    .todo-archive-action:hover {
+      text-decoration: underline;
+    }
+    .todo-active-list, .todo-archive-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .todo-archive-heading {
+      margin: 0;
+      padding: 0;
+    }
+    .todo-active-list li, .todo-archive-list li {
+      display: block;
+      overflow: hidden;
+    }
+    .todo-detail-link {
+      clear: both;
+      padding-left: 10px;
+      padding-bottom: 5px;
+      font-size: 10px;
+      text-decoration: none;
+      color: blue;
+    }
+    .todo-detail-link a {
+      cursor: pointer;
+      color: #3030A0;
+    }
+    .todo-detail-link a:hover {
+      text-decoration: underline;
+    }
+    .todo-title {
+      float: left;
+    }
+    .todo-title.todo-complete {
+      color: #AAA;
+      text-decoration: line-through;
+    }
+    .todo-done {
+      float: right
+    }
+  </style>
+
+  <base href="/" />
+</head>
+<body>
+  <div class="todo-container" ng-view></div>
+
+  <script>
+    var todoModule = angular.module('todo', ['ngRoute']);
+
+    todoModule.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+
+      $locationProvider.html5Mode(true);
+
+      $routeProvider.
+        when('/', {
+          templateUrl: 'tutorial-06c-todo-list.html',
+          controller: 'todoCtrl'
+        }).
+        when('/todo/:todoId', {
+          templateUrl: '/tutorial-06c-todo-detail.html',
+          controller: 'todoDetailCtrl'
+        }).
+        otherwise({
+          redirectTo: '/'
+        });
+
+    }]);
+
+    todoModule.controller('todoCtrl', ['$scope', '$location', 'todoDataService', function($scope, $location, todoDataService) {
+
+      $scope.todos = [];
+
+      todoDataService
+        .getTodos()
+        .then(function (todos) {
+          $scope.todos = todos;
+        });
+
+      $scope.anyArchived = false;
+
+      $scope.archiveCompletedItems = function() {
+        var anyArchived = false;
+
+        _.each($scope.todos, function(todo) {
+          todo.active = !todo.done && todo.active;
+          anyArchived = anyArchived || !todo.active;
+        });
+
+        $scope.anyArchived = anyArchived;
+      };
+
+    }]);
+
+    todoModule.controller('todoDetailCtrl', ['$scope', 'todoDataService', '$routeParams', function($scope, todoDataService, $routeParams) {
+
+      $scope.todo = todoDataService.getTodoById($routeParams.todoId);
+
+      $scope.getDetailedTitle = function(title, isDone) {
+        return title.toString() + (isDone ? " (Completed)" : " (Ready to Start)");
+      };
+
+    }]);
+
+    todoModule.service('todoDataService', function($http) {
+      var 
+        todos = null;
+
+      this.getTodos = function() {
+        return $http
+          .get('tutorial-06c-todo-data.html')
+          .then(function(response) {
+            todos = response.data.todos;
+            _.each(todos, function(todo) {
+              todo.active = true;
+            });
+            return todos;
+          });
+      };
+
+      this.getTodoById = function(id) {
+        return _.find(todos, function(todo) {
+          return todo.id === id;
+        });
+      };
+ 
+    });
+
+    todoModule.directive('todo', function($location) {
+
+      return {
+        restrict: 'E',
+        scope: {
+          data: '=todoData'
+        },
+        templateUrl: 'tutorial-06c-todo-item.html',
+        link: function(scope, element, attrs) {
+          scope.gotoDetail = function(id) {
+            $location.path('/todo/' + id.toString());
+          };
+        }
+      };
+
+    });
+
+    todoModule.filter('activeItems', function() {
+
+      return function(todos, showActive) {
+        return _.filter(todos, function(todo) {
+          return showActive ? todo.active : !todo.active;
+        });
+      };
+
+    });
+
+  </script>
+
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>
+
+

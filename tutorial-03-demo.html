@@ -1,0 +1,55 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <base href="/" />
+  
+</head>
+<body ng-controller="demoCtrl">
+  <div>
+    <b>Invoice:</b>
+    <div>
+      Quantity: <input type="number" ng-model="purchase.qty" />
+    </div>
+    <div>
+      Costs: <input type="number" ng-model="purchase.cost" />
+    </div>
+    <div>
+      <b>Total:</b> {{ purchase.qty | dataJd }}
+    </div>
+  </div>
+  <script>
+    var demoModule = angular.module('demo', ['ngRoute']);
+          
+    demoModule.controller('demoCtrl', function($scope, dataService) {
+
+      $scope.purchase = { qty: 1, cost: 5.5123 };
+
+      $scope.myData = dataService.getMyData();
+
+    });
+
+
+    demoModule.service('dataService', function($http) {
+
+      this.getMyData = function() {
+        $http({
+          url: '/claim/getClaimData',
+          method: 'GET'
+        })
+      }
+
+    });
+
+
+    demoModule.filter('dataJd', function() {
+
+      return function(value) {
+       return value * 5;
+      }
+    });
+  </script>  
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

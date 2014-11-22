@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <style>
+    .policy-details {
+      font-size: 22px;
+      color: green;
+    }
+  </style>
+  <base href="/" />
+</head>
+<body ng-controller="demoCtrl">
+  <h1>Demo of Module.constant, Module.value</h1>
+  <div class="policy-details">
+    <ul>
+      <li ng-repeat="brand in brands">{{ brand }}</li>
+    </ul>
+    <p>Current Brand: {{ currentBrand }}</p>
+  </div>
+  <script>
+    var demoModule = angular.module('demo', ['ngRoute']);
+    
+    demoModule.constant('brands', ['TID AU', 'TID NZ', 'SureSave']);
+
+    demoModule.value('currentBrand', 'SureSave');
+
+    demoModule.controller('demoCtrl', function($scope, brands, currentBrand) {
+
+      $scope.brands = brands;
+
+      $scope.currentBrand = currentBrand;
+
+    });
+  </script>  
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

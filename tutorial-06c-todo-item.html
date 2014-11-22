@@ -1,0 +1,7 @@
+<div class="todo-item">
+  <div class="todo-title" ng-class="{ 'todo-complete': data.done }" ng-bind="data.title"></div>
+  <div class="todo-done">
+    <input type="checkbox" ng-model="data.done" ng-checked="data.done" />
+  </div>
+  <div class="todo-detail-link"><a ng-click="gotoDetail(data.id)">See details</a></div>
+</div>

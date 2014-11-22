@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-us" ng-app="tutorial-05">
+<head>
+  <title>Angular Tutorials</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Angular tutorials">
+
+  <link rel="stylesheet" href="content/styles/styles.css" />
+
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>
+  <base href="/" />
+
+</head>
+<body id="content" ng-controller="slideDemoController">
+  <div id="slide-content">
+    <div class="slide-controls">
+      <a ng-click="showBullet()">Text</a>
+      <a ng-click="showCode()">Code</a>
+    </div>
+    <img class="angjs-large" src="content/styles/i/AngularJS-large.png">
+    <h1 class="long-content">{{ subject }}</h1>
+    <div class="main-points long-content">
+      <ul>
+        <li ng-repeat="bullet in bullets" ng-show="currentBulletIndex > $index" ng-class="{'current': isCurrentBullet($index+1)}">
+          <span >{{ bullet }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom Scripts -->
+  <script src="tutorial-05.js" ></script>
+
+  <!--<script src="http://localhost:35729/livereload.js"></script>-->
+</body>
+</html>

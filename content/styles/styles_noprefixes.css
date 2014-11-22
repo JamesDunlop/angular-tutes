@@ -1,0 +1,158 @@
+/* line 17, ../../../../../../../Ruby192/lib/ruby/gems/1.9.1/gems/compass-sourcemaps-0.12.3.sourcemaps.a4836f1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../Ruby192/lib/ruby/gems/1.9.1/gems/compass-sourcemaps-0.12.3.sourcemaps.a4836f1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../Ruby192/lib/ruby/gems/1.9.1/gems/compass-sourcemaps-0.12.3.sourcemaps.a4836f1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../Ruby192/lib/ruby/gems/1.9.1/gems/compass-sourcemaps-0.12.3.sourcemaps.a4836f1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../Ruby192/lib/ruby/gems/1.9.1/gems/compass-sourcemaps-0.12.3.sourcemaps.a4836f1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../Ruby192/lib/ruby/gems/1.9.1/gems/compass-sourcemaps-0.12.3.sourcemaps.a4836f1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../Ruby192/lib/ruby/gems/1.9.1/gems/compass-sourcemaps-0.12.3.sourcemaps.a4836f1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../Ruby192/lib/ruby/gems/1.9.1/gems/compass-sourcemaps-0.12.3.sourcemaps.a4836f1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../Ruby192/lib/ruby/gems/1.9.1/gems/compass-sourcemaps-0.12.3.sourcemaps.a4836f1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 23, ../sass/styles_noprefixes.sass */
+body {
+  font-family: arial;
+  font-color: #aaaaaa;
+}
+
+/* line 27, ../sass/styles_noprefixes.sass */
+#content {
+  width: 750px;
+  margin: auto;
+}
+/* line 31, ../sass/styles_noprefixes.sass */
+#content #slide-content {
+  background: #eaeaea;
+  padding: 20px;
+  position: relative;
+}
+/* line 36, ../sass/styles_noprefixes.sass */
+#content #slide-content .angjs-large {
+  opacity: 0.2;
+  width: 383px;
+  display: block;
+  margin: auto;
+}
+/* line 42, ../sass/styles_noprefixes.sass */
+#content #slide-content h1 {
+  color: #777777;
+  font-size: 28px;
+  margin: 30px 0 30px 170px;
+}
+/* line 46, ../sass/styles_noprefixes.sass */
+#content #slide-content h1.long-content {
+  margin: 30px 0 30px 60px;
+}
+/* line 49, ../sass/styles_noprefixes.sass */
+#content #slide-content .main-points {
+  font-size: 18px;
+  margin: 10px 0 10px 200px;
+}
+/* line 52, ../sass/styles_noprefixes.sass */
+#content #slide-content .main-points.long-content {
+  margin: 10px 0 10px 90px;
+}
+/* line 55, ../sass/styles_noprefixes.sass */
+#content #slide-content .main-points ul {
+  list-style-type: disc;
+}
+/* line 58, ../sass/styles_noprefixes.sass */
+#content #slide-content .main-points li {
+  margin-bottom: 15px;
+  color: #888888;
+}
+/* line 61, ../sass/styles_noprefixes.sass */
+#content #slide-content .main-points li span {
+  line-height: 24px;
+}
+/* line 64, ../sass/styles_noprefixes.sass */
+#content #slide-content .main-points li.current {
+  color: black;
+}
+/* line 67, ../sass/styles_noprefixes.sass */
+#content .slide-controls {
+  position: absolute;
+  font-size: 24px;
+  color: #bbbbbb;
+  cursor: pointer;
+  top: 10px;
+  right: 20px;
+  width: 40px;
+}
+/* line 76, ../sass/styles_noprefixes.sass */
+#content #code-content {
+  background: #eaeaea;
+  padding: 20px;
+}
+/* line 80, ../sass/styles_noprefixes.sass */
+#content #code-content .code {
+  background: white;
+  border: 3px solid #999999;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 300px;
+}
+/* line 87, ../sass/styles_noprefixes.sass */
+#content #code-content .code pre {
+  margin: 20px;
+  font-family: "droid sans mono";
+}
+/* line 91, ../sass/styles_noprefixes.sass */
+#content #code-content .code pre.html-code {
+  font-size: 16px;
+  font-family: "courier";
+}

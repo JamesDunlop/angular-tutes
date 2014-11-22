@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <base href="/" />
+  
+</head>
+<body ng-controller="demoCtrl">
+  <div>
+    <div><b>Policy List:</b></div>
+    <input type="text" ng-model="query" />
+    <ul>
+      <li ng-repeat="policy in policies">
+        Brand: {{ policy.brand }}, Policy Number: {{ policy.policyNumber }}
+      </li>
+    </ul>
+  </div>
+  <script>
+    var demoModule = angular.module('demo', ['ngRoute']);
+          
+    demoModule.controller('demoCtrl', function($scope) {
+
+      $scope.policies = [ 
+        { brand: 'TID AU',   policyNumber: 'TIDAUS13000210' },
+        { brand: 'TID AU',   policyNumber: 'TIDAUS13000213' },
+        { brand: 'TID NZ',   policyNumber: 'TIDNZ1200889' },
+        { brand: 'TID NZ',   policyNumber: 'TIDNZ1234821' },
+        { brand: 'SURESAVE', policyNumber: 'SSAU1724141' },
+        { brand: 'SURESAVE', policyNumber: 'SSAU1634141' },
+        { brand: 'COTA',     policyNumber: 'COTA22310881' },
+        { brand: 'COTA',     policyNumber: 'COTA22310881' },
+        { brand: 'COTA',     policyNumber: 'COTA22323881' },
+        { brand: 'COTA',     policyNumber: 'COTA22324881' },
+        { brand: 'COTA',     policyNumber: 'COTA22325881' },
+        { brand: 'COTA',     policyNumber: 'COTA22326881' }
+      ];
+
+    });
+  </script>  
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

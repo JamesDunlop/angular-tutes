@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html id="ng-app" ng-app="demo">
+<head>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <base href="/" />
+</head>
+<body ng-controller="demoCtrl">
+  <pre>{{ message }}</pre>
+  <script>
+    var demoModule = angular.module('demo', ['ngRoute']);
+          
+    demoModule.controller('demoCtrl', function($scope) {
+
+      $scope.message = 'Hello World';
+
+    });
+  </script>
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

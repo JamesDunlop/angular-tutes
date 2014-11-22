@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <base href="/" />
+  
+</head>
+<body ng-controller="demoCtrl">
+  <div style="margin-left: 10px; padding: 10px; border: 1px solid black;">
+    <h1>Demo of $watch and $apply</h1>
+    <input type="text" ng-model="myData.message" />
+    <p>Message: {{myData.message}}</p>
+    <p>Number of changes: {{myData.numberOfChanges}}</p>
+    <hr/><br/><br/>
+    <input type="button" value="Get Data" ng-click="getData()" />
+    <p>Response: {{dataRetrieved}}</p>
+  </div>
+  <script>
+    var demoModule = angular.module('demo', ['ngRoute']);
+          
+    demoModule.controller('demoCtrl', function($scope) {
+
+      $scope.myData = { message: 'Some message', numberOfChanges: 0 };
+
+      $scope.$watch('myData', function(newValue, oldValue) {
+        $scope.myData.numberOfChanges += 1;
+      });
+
+      $scope.dataRetrieved = 'No data';
+
+      $scope.getData = function() {
+        $scope.$apply(function() {
+          //setTimeout(function() {
+              $scope.dataRetrieved = 'Data returned';
+          //}, 2000);
+        });
+      };
+
+    });
+  </script>  
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

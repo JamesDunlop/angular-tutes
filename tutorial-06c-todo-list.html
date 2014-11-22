@@ -1,0 +1,18 @@
+<div>
+  <div class="todo-active-container">
+    <h3 class="todo-list-heading">Things to do today<a class="todo-archive-action" ng-click="archiveCompletedItems()">archive</a></h3>
+    <ul class="todo-active-list">
+      <li ng-repeat="todoItem in todos | activeItems:true">
+        <todo todo-data="todoItem"></todo>
+      </li>
+    </ul>
+  </div>
+  <div class="todo-archive-container" ng-show="anyArchived">
+    <h3 class="todo-list-heading">Archived items</h3>
+    <ul class="todo-archive-list">
+      <li ng-repeat="todoItem in todos | activeItems:false">
+        <todo todo-data="todoItem"></todo>
+      </li>
+    </ul>
+  </div>
+</div>

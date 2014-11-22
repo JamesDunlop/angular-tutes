@@ -1,0 +1,14 @@
+{
+    "curly": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "expr": true,
+    "latedef": true,
+    "onevar": false,
+    "maxstatements": "20",
+    "noarg": true,
+    "node": true,
+    "trailing": true,
+    "undef": true,
+    "unused": true
+}

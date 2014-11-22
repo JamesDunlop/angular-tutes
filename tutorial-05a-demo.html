@@ -1,0 +1,92 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <base href="/" />
+</head>
+<body ng-controller="demoCtrl">
+  <div style="margin: 5px 10px 5px 10px; padding: 10px; border: 1px solid black;">
+    <h2>ngMouseenter, ngMouseleave (ng-mouseenter, ng-mouseleave)</h2>
+    <label class="show-behavior">{{ enterResult }}</label>
+    <p style="width: 500px; height: 40px; border: 1px solid green;" ng-mouseenter="registerInsideBox()" ng-mouseleave="registerOutsideBox()">
+    </p>
+  </div>
+  <div style="margin: 5px 10px 5px 10px; padding: 10px; border: 1px solid black;">
+    <h2>ngClick (ng-click)</h2>
+    <label class="show-behavior">{{ clickResult }}</label>
+    <p style="width: 500px; height: 40px; border: 1px solid green;" x-ng-click="registerClick()">
+    </p>
+  </div>  
+  <div style="margin: 5px 10px 5px 10px; padding: 10px; border: 1px solid black;">
+    <h2>ngChange (ng-change)</h2>
+    <label class="show-behavior">{{ changeResult }}</label><br/>
+    <select ng-model="brandSelected" ng-change="registerChange()">
+      <option value="0">Choose ...</option>
+      <option value="1">TID AU</option>
+      <option value="2">TID NZ</option>
+      <option value="3">SS</option>
+      <option value="4">WN</option>
+    </select>
+    </p>
+  </div>  
+  <div style="margin: 5px 10px 5px 10px; padding: 10px; border: 1px solid black;">
+    <h2>ngDisabled (ng-disabled)</h2>
+    <p style="width: 500px; height: 40px; border: 1px solid green; overflow: hidden;" ng-mouseenter="disableButton()" ng-mouseleave="enableButton()"></p>
+    <input type="button" value="Add Item" ng-disabled="buttonDisabled" />
+  </div>  
+  <div style="margin: 5px 10px 5px 10px; padding: 10px; border: 1px solid black;">
+    <h2>ngShow (ng-show)</h2>
+    <input type="button" value="Toggle editing" ng-click="toggleEditing()"  />
+    <p ng-show="canEdit">{{ companyName }}</p>
+    <p ng-hide="canEdit"><input type="text" ng-model="companyName" /></p>
+  </div>  
+  <script>
+    var demoModule = angular.module('demo', ['ngRoute']);
+          
+    demoModule.controller('demoCtrl', function($scope) {
+      $scope.registerInsideBox = function() {
+        $scope.enterResult = 'You just moved the mouse INSIDE the green box';
+      };
+
+      $scope.registerOutsideBox = function() {
+        $scope.enterResult = 'You just moved the mouse OUTSIDE the green box';
+      };
+
+      $scope.registerClick = function() {
+        $scope.clickResult = 'You just clicked in the green box';
+      };
+
+      $scope.brandSelected = "None";
+
+      $scope.registerChange = function() {
+        $scope.changeResult = 'You just changed your selection of brand';
+        setTimeout(function() { 
+          $scope.$apply(function() {
+            $scope.changeResult = ''; 
+          })
+        }, 1000);
+      };
+
+      $scope.buttonDisabled = false;
+
+      $scope.disableButton = function() {
+        $scope.buttonDisabled = true;
+      };
+      $scope.enableButton = function() {
+        $scope.buttonDisabled = false;
+      };
+
+      $scope.canEdit = false;
+      $scope.companyName = 'World Nomads Group';
+
+      $scope.toggleEditing = function() {
+        $scope.canEdit = !$scope.canEdit
+      };
+
+    });
+
+  </script>  
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>
