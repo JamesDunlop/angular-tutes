@@ -1,0 +1,68 @@
+<!doctype html>
+<html ng-app="formDemo">
+<head>
+  <link rel="stylesheet" href="content/styles/styles.css" type="text/css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" type="text/css" />
+
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-messages/angular-messages.js" ></script>  
+  <base href="/" />
+  
+</head>
+<body ng-controller="formCtrl as vm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>AngularJS Tutorial - Forms</h3>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <form name="quote" novalidate>
+          <div class="form-group">
+            <label>First name</label>
+            <input type="text" class="form-control" ng-model="vm.firstName" required minlength="5" />
+          </div>
+          <div class="form-group">
+            <label>Traveller age</label>
+            <input name="age" type="number" class="form-control" ng-model="vm.travellerAge" required min="16" max="75" />
+
+            <div ng-messages="quote.age.$error" class="errors" ng-show="quote.$submitted || quote.age.$touched">
+              <span ng-message="required">Please enter a traveller age</span>
+              <span ng-message="min">The age must be greater than 16</span>
+            </div>
+          </div>
+          <button class="btn btn-primary">Get Quote</button>
+        </form>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <hr/>
+      </div>      
+    </div>
+    <div class="row" ng-show="vm.formSubmitMessage">
+      <div class="col-md-6">
+        <div class="well">
+          <p class="text-info">{{vm.formSubmitMessage}}</p>
+        </div>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <pre>{{quote | json}}</pre>
+      </div>      
+    </div>
+  </div>
+  <script>
+
+    var formModule = angular.module('formDemo', ['ngMessages']);
+          
+    formModule.controller('formCtrl', function() {
+      this.formSubmitMessage = '';
+    });
+
+  </script>  
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

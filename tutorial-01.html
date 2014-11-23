@@ -37,9 +37,9 @@
 var demoModule = angular.module('demo');
       </pre>
       <pre ng-show="codeVisible > 1">
-demoModule.controller('demoCtrl', function($scope) {
+demoModule.controller('demoCtrl', function() {
 
-  $scope.message = 'Hello World';
+  this.message = 'Hello World';
 
 });
       </pre>
@@ -48,8 +48,8 @@ demoModule.controller('demoCtrl', function($scope) {
 &lt;html ng-app="demo"&gt;
 &lt;head&gt;
 &lt;/head&gt;
-&lt;body ng-controller="demoCtrl"&gt;
-  &lt;p&gt;<span ng-non-bindable>{{ message }}</span>&lt;/p&gt;
+&lt;body ng-controller="demoCtrl as vm"&gt;
+  &lt;p&gt;<span ng-non-bindable>{{ vm.message }}</span>&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
       </pre>

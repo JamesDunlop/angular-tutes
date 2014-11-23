@@ -18,10 +18,11 @@
         <form name="quote" ng-submit="saveTraveller(quote.$valid)" novalidate>
           <div class="form-group">
             <label >Traveller Name</label>
-            <input type="text" class="form-control" name="traveller" ng-model="travellerName" required />
+            <input type="text" class="form-control" name="traveller" ng-model="travellerName" required minlength="5" />
     
-            <div class="errors" ng-messages="quote.traveller.$error" ng-if="quote.traveller.$touched && quote.traveller.$invalid">
+            <div class="errors" ng-messages="quote.traveller.$error" ng-if="quote.traveller.$touched || quote.$submitted">
               <span ng-message="required">Please enter the traveller's name</span>
+              <span ng-message="minlength">The traveller's name should be at least 5 characters</span>
             </div>
           </div>
 
@@ -29,7 +30,7 @@
             <label>Age</label>
             <input type="number" class="form-control" name="age" ng-model="travellerAge" required min="16" max="75" />
 
-            <div class="errors" ng-messages="quote.age.$error" ng-if="quote.age.$touched && quote.age.$invalid">
+            <div class="errors" ng-messages="quote.age.$error" ng-if="quote.age.$touched || quote.$submitted">
               <span ng-message="required">Please enter the traveller's age</span>
               <span ng-message="min">The traveller must be at least 16 years old</span>
             </div>
@@ -47,7 +48,7 @@
     <div class="row">
       <div class="col-md-6" ng-show="formSubmitMessage">
         <div class="well">
-          <span class="text-info">{{formSubmitMessage}}</span>
+          <p class="text-info">{{formSubmitMessage}}</p>
         </div>
       </div>
     </div>
@@ -59,7 +60,7 @@
   </div>
   <script>
 
-    var formModule = angular.module('formDemo', ['ngRoute']);
+    var formModule = angular.module('formDemo', ['ngRoute', 'ngMessages']);
           
     formModule.controller('formCtrl', function($scope) {
       $scope.saveTraveller = function(valid) {

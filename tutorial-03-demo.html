@@ -1,54 +1,51 @@
 <!doctype html>
 <html ng-app="demo">
 <head>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" type="text/css" />
+
   <script src="bower_components/angular/angular.js" ></script>
-  <script src="bower_components/angular-route/angular-route.js" ></script>  
   <base href="/" />
   
 </head>
-<body ng-controller="demoCtrl">
-  <div>
-    <b>Invoice:</b>
-    <div>
-      Quantity: <input type="number" ng-model="purchase.qty" />
+<body ng-controller="demoCtrl as vm">
+  <div class="container">
+    <div class="row">
+      <div class="jumbotron">
+        <h1>Invoice</h1>
+      </div>
     </div>
-    <div>
-      Costs: <input type="number" ng-model="purchase.cost" />
-    </div>
-    <div>
-      <b>Total:</b> {{ purchase.qty | dataJd }}
+    <div class="row">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-md-2 control-label">Quantity</label>
+          <div class="col-md-4">
+            <input class="form-control" type="number" ng-model="vm.purchase.qty" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label">Price</label>
+          <div class="col-md-4">
+            <input class="form-control" type="number" ng-model="vm.purchase.cost" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label">Total</label>
+          <div class="col-md-4">
+            <p class="form-control-static" >{{ vm.purchase.qty * vm.purchase.cost | currency }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <script>
-    var demoModule = angular.module('demo', ['ngRoute']);
+    var demoModule = angular.module('demo', []);
           
-    demoModule.controller('demoCtrl', function($scope, dataService) {
+    demoModule.controller('demoCtrl', function() {
 
-      $scope.purchase = { qty: 1, cost: 5.5123 };
-
-      $scope.myData = dataService.getMyData();
+      this.purchase = { qty: 1, cost: 5.99 };
 
     });
 
-
-    demoModule.service('dataService', function($http) {
-
-      this.getMyData = function() {
-        $http({
-          url: '/claim/getClaimData',
-          method: 'GET'
-        })
-      }
-
-    });
-
-
-    demoModule.filter('dataJd', function() {
-
-      return function(value) {
-       return value * 5;
-      }
-    });
   </script>  
   <script src="http://localhost:35729/livereload.js"></script>
 </body>

@@ -37,9 +37,9 @@
 var demoModule = angular.module('demo');
       </pre>
       <pre ng-show="codeVisible > 1">
-demoModule.controller('demoCtrl', function($scope, $location) {
+demoModule.controller('demoCtrl', function($location) {
 
-  $scope.$location = $location;
+  this.$location = $location;
 
 });
       </pre>
@@ -48,9 +48,11 @@ demoModule.controller('demoCtrl', function($scope, $location) {
 &lt;html ng-app="demo"&gt;
 &lt;head&gt;
 &lt;/head&gt;
-&lt;body ng-controller="demoCtrl"&gt;
-  &lt;p&gt;<span ng-non-bindable>$location.host() = {{ $location.host() }}</span>&lt;/p&gt;
-  &lt;p&gt;<span ng-non-bindable>$location.port() = {{ $location.port() }}</span>&lt;/p&gt;
+&lt;body ng-controller="demoCtrl as vm"&gt;
+  &lt;p&gt;<span ng-non-bindable>$location.host()     = {{ vm.$location.host() }}</span>&lt;/p&gt;
+  &lt;p&gt;<span ng-non-bindable>$location.port()     = {{ vm.$location.port() }}</span>&lt;/p&gt;
+  &lt;p&gt;<span ng-non-bindable>$location.absUrl()   = {{ vm.$location.absUrl() }}</span>&lt;/p&gt;
+  &lt;p&gt;<span ng-non-bindable>$location.protocol() = {{ vm.$location.protocol() }}</span>&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
       </pre>

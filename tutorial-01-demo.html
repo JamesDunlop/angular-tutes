@@ -2,17 +2,16 @@
 <html id="ng-app" ng-app="demo">
 <head>
   <script src="bower_components/angular/angular.js" ></script>
-  <script src="bower_components/angular-route/angular-route.js" ></script>  
   <base href="/" />
 </head>
-<body ng-controller="demoCtrl">
-  <pre>{{ message }}</pre>
+<body ng-controller="demoCtrl as vm">
+  <pre>{{ vm.message }}</pre>
   <script>
-    var demoModule = angular.module('demo', ['ngRoute']);
+    var demoModule = angular.module('demo', []);
           
-    demoModule.controller('demoCtrl', function($scope) {
+    demoModule.controller('demoCtrl', function() {
 
-      $scope.message = 'Hello World';
+      this.message = 'Hello World';
 
     });
   </script>

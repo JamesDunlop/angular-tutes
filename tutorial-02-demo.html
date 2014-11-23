@@ -2,20 +2,21 @@
 <html ng-app="demo">
 <head>
   <script src="bower_components/angular/angular.js" ></script>
-  <script src="bower_components/angular-route/angular-route.js" ></script>  
   <base href="/" />
 
 </head>
-<body ng-controller="demoCtrl">
-  <pre>$location.host() = {{ $location.host() }}</pre>
-  <pre>$location.port() = {{ $location.port() }}</pre>
+<body ng-controller="demoCtrl as vm">
+  <pre>$location.host() = {{ vm.$location.host() }}</pre>
+  <pre>$location.port() = {{ vm.$location.port() }}</pre>
+  <pre>$location.absUrl() = {{ vm.$location.absUrl() }}</pre>
+  <pre>$location.protocol() = {{ vm.$location.protocol() }}</pre>
 </body>
   <script>
-    var demoModule = angular.module('demo', ['ngRoute']);
+    var demoModule = angular.module('demo', []);
           
-    demoModule.controller('demoCtrl', function($scope, $location) {
+    demoModule.controller('demoCtrl', function($location) {
 
-      $scope.$location = $location;
+      this.$location = $location;
 
     });
   </script>

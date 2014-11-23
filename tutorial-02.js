@@ -7,7 +7,7 @@ tutorial02.controller('slideDemoController', function ($scope) {
     'Dependency Injection',
   	'Change Tracking',
   	'Data Binding (two-way)',
-    'Built-in Services ($http, $route)',
+    'Built-in Services ($http, $location, $route)',
     'Built-in Custom Markup (ng-repeat, ng-click)'
   ];
 

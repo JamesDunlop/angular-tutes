@@ -48,17 +48,17 @@ demoModule.controller('demoCtrl', function($scope) {
 &lt;html ng-app="demo"&gt;
 &lt;head&gt;
 &lt;/head&gt;
-&lt;body ng-controller="demoCtrl"&gt;
+&lt;body ng-controller="demoCtrl as vm"&gt;
   &lt;div&gt;
     &lt;b&gt;Invoice:&lt;/b&gt;
     &lt;div&gt;
-      Quantity: &lt;input type="number" ng-model="purchase.qty" /&gt;
+      Quantity: &lt;input type="number" ng-model="vm.purchase.qty" /&gt;
     &lt;/div&gt;
     &lt;div&gt;
-      Costs: &lt;input type="number" ng-model="purchase.cost" /&gt;
+      Costs: &lt;input type="number" ng-model="vm.purchase.cost" /&gt;
     &lt;/div&gt;
     &lt;div&gt;
-      &lt;b&gt;Total:&lt;/b&gt;<span ng-non-bindable> {{ purchase.qty * purchase.cost | currency }}</span>
+      &lt;b&gt;Total:&lt;/b&gt;<span ng-non-bindable> {{ vm.purchase.qty * vm.purchase.cost | currency }}</span>
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/body&gt;
