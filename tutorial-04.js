@@ -15,8 +15,7 @@ tutorial04.controller('slideDemoController', function ($scope) {
     'Every application has one $rootScope',
     'The view can bind to functions on the scope as well as properties',
     'Scope can be inherited (by default)',
-    'Using $apply and $watch with $scope',
-    'Follow up on ng-cloak from last time'
+    'Using $apply and $watch with $scope'
   ];
 
   $scope.currentBulletIndex = 0;

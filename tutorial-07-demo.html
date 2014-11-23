@@ -1,0 +1,88 @@
+<!doctype html>
+<html ng-app="formDemo">
+<head>
+  <link rel="stylesheet" href="content/styles/styles.css" type="text/css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" type="text/css" />
+
+  <script src="bower_components/angular/angular.js" ></script>
+  <script src="bower_components/angular-route/angular-route.js" ></script>  
+  <script src="bower_components/angular-messages/angular-messages.js" ></script>  
+  <base href="/" />
+  
+</head>
+<body ng-controller="formCtrl">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>AngularJS Tutorial - Forms</h3>
+        <form name="quote" ng-submit="saveTraveller(quote.$valid)" novalidate>
+          <div class="form-group">
+            <label >Traveller Name</label>
+            <input type="text" class="form-control" name="traveller" ng-model="travellerName" required />
+    
+            <div class="errors" ng-messages="quote.traveller.$error" ng-if="quote.traveller.$touched && quote.traveller.$invalid">
+              <span ng-message="required">Please enter the traveller's name</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Age</label>
+            <input type="number" class="form-control" name="age" ng-model="travellerAge" required min="16" max="75" />
+
+            <div class="errors" ng-messages="quote.age.$error" ng-if="quote.age.$touched && quote.age.$invalid">
+              <span ng-message="required">Please enter the traveller's age</span>
+              <span ng-message="min">The traveller must be at least 16 years old</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary">Get Quote</button>
+        </form>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <hr/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6" ng-show="formSubmitMessage">
+        <div class="well">
+          <span class="text-info">{{formSubmitMessage}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <pre>{{getTopFormProps() | json}}</pre>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    var formModule = angular.module('formDemo', ['ngRoute']);
+          
+    formModule.controller('formCtrl', function($scope) {
+      $scope.saveTraveller = function(valid) {
+        if (valid) {
+          $scope.formSubmitMessage = "Form data is valid";  
+        } else {
+          $scope.formSubmitMessage = "Form data is not valid";  
+        }
+      };
+
+      $scope.getTopFormProps = function() {
+        return { 
+          "$name": $scope.quote.$name, 
+          "$dirty": $scope.quote.$dirty, 
+          "$pristine": $scope.quote.$pristine, 
+          "$valid": $scope.quote.$valid, 
+          "$invalid": $scope.quote.$invalid, 
+          "traveller": $scope.quote.traveller, 
+        };
+      };
+    });
+
+  </script>  
+  <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

@@ -18,7 +18,7 @@ module.exports = function (grunt) {
       },
       dev: {
         files: {
-          'content/styles/styles.css': 'src/styles/styles_noprefixes.css'
+          'content/styles/styles.css': 'content/styles/styles_noprefixes.css'
         },
       },
     },
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         livereload: true
       },
       compass: {
-        files: ['src/sass/*.{scss,sass}', 'src/sass/**/*.{scss,sass}'],
+        files: ['content/sass/*.{scss,sass}', 'content/sass/**/*.{scss,sass}'],
         tasks: ['compass:dev', 'autoprefixer:dev'],
         options: {
           livereload: false,
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
         files: ['*.js'],
       },
       css: {
-        files: ['src/styles/*.css'],
+        files: ['content/styles/*.css'],
       },
       html: {
         files: ['*.html']
@@ -58,11 +58,11 @@ module.exports = function (grunt) {
       dev: {
         options: {
           debugInfo: false,
-          sassDir: 'src/sass',
-          cssDir: 'src/styles',
-          imagesDir: 'src/styles',
-          javascriptsDir: 'src/scripts',
-          fontsDir: 'src/styles/fonts',
+          sassDir: 'content/sass',
+          cssDir: 'content/styles',
+          imagesDir: 'content/styles',
+          javascriptsDir: 'content/scripts',
+          fontsDir: 'content/styles/fonts',
           config: 'config_dev.rb',
           outputStyle: 'expanded', 
         }
